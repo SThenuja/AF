@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Qusetion1 Lab</title>
+
+</head>
+<body>
+<script type="text/javascript">
+    var vehicleName = 'Toyata';
+    function printVehicleNameOuter() {
+        console.log(this.vehicleName);
+    }
+
+    console.log(this);
+
+    printVehicleNameOuter(); // Toyata
+
+    var vehicle ={
+        vehicleName: 'Nissan',
+        printVehicleNameInner: printVehicleNameOuter
+    };
+
+    vehicle.printVehicleNameInner(); // Nissan
+
+
+    var vehicle1 ={
+        vehicleName: 'Honda',
+        printVehicleNameInner: function () {
+            return function () {
+                console.log(this.vehicleName)
+            }
+        }
+    };
+
+    var execute = vehicle1.printVehicleNameInner();
+    execute(); //answer Toyata
+    execute.call(vehicle1); //answer Honda
+
+    var execute1 = vehicle1.printVehicleNameInner().bind(vehicle1);
+    execute1();
+</script>
+</body>
+</html>
