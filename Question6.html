@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question6</title>
+</head>
+<body>
+<script>
+    function fetchUsers() {
+        return fetch('http://api.github.com/users')
+            .then(response => response.json());
+    }
+    fetchUsers().then(json =>{
+        console.log(json);
+    });
+
+    //async / wait
+    async function fetchUserAsync() {
+        const response = await fetch('http://api.github.com/users');
+        const json = await response.json();
+        console.log(json);
+    }
+    fetchUserAsync();
+</script>
+</body>
+</html>

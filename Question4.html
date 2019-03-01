@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question4</title>
+</head>
+<body>
+<script>
+    function Vehicle(type) {
+        Vehicle.VehicleCount++;
+        this.type = type;
+    }
+    Vehicle.VehicleCount = 0;
+    Vehicle.prototype.drive = function () {
+        console.log('Vehicle is driving');
+    };
+
+    var vehicle = new Vehicle('Toyata');
+    function Car(type) {
+        Vehicle.call(this, type);
+    }
+    Car.prototype = Object.create(Vehicle.prototype);
+    Car.prototype.constructor = Car;
+    Car.prototype.balanceWheels = function () {
+      console.log('Wheel are balanced');
+    };
+
+    var car = new Car('Nissan');
+    car.drive();
+    car.balanceWheels();
+    console.log(car.type, Vehicle.VehicleCount);
+
+    // const and let
+    let vehicleName = 'Toyota';
+    vehicleName = 'Nissan';
+    const COUNTRY = 'Japan';
+</script>
+</body>
+</html>
